@@ -387,3 +387,26 @@ function initModals() {
     });
   }
 }
+
+
+/* --- 5. LIVE APP TAB SWITCHER --- */
+window.switchLiveTab = function(appType) {
+  const btnStreamlit = document.getElementById("tab-streamlit-btn");
+  const btnFlask = document.getElementById("tab-flask-btn");
+  const embedStreamlit = document.getElementById("embed-streamlit");
+  const embedFlask = document.getElementById("embed-flask");
+
+  if (!btnStreamlit || !btnFlask || !embedStreamlit || !embedFlask) return;
+
+  if (appType === "streamlit") {
+    embedStreamlit.style.display = "block";
+    embedFlask.style.display = "none";
+    btnStreamlit.style.background = "rgba(99,102,241,0.25)";
+    btnFlask.style.background = "rgba(30,41,59,0.5)";
+  } else {
+    embedStreamlit.style.display = "none";
+    embedFlask.style.display = "block";
+    btnFlask.style.background = "rgba(244,63,94,0.25)";
+    btnStreamlit.style.background = "rgba(30,41,59,0.5)";
+  }
+};

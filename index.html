@@ -23,7 +23,7 @@
       <ul class="nav-links">
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#simulators" class="nav-link">Live Simulators</a></li>
+        <li><a href="#live-demos" class="nav-link">Live Apps</a></li>
         <li><a href="#skills" class="nav-link">Capabilities</a></li>
         <li><a href="#experience" class="nav-link">Journey</a></li>
       </ul>
@@ -38,7 +38,7 @@
     <div class="container hero-grid">
       <div class="hero-content">
         <span class="badge badge-indigo">
-          <i class="fa-solid fa-graduation-cap"></i> Data Science, ML, AI
+          <i class="fa-solid fa-brain"></i> Data Science, ML, AI
         </span>
         <h1 class="hero-title">
           Building <span class="gradient-text">Intelligent Systems</span> & Predictive AI Solutions.
@@ -50,8 +50,8 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#simulators" class="btn-primary">
-            <i class="fa-solid fa-microchip"></i> Try Live Simulators
+          <a href="#live-demos" class="btn-primary">
+            <i class="fa-solid fa-play"></i> Try Live Applications
           </a>
           <a href="#projects" class="btn-outline">
             <i class="fa-solid fa-folder-open"></i> Explore 5 Projects
@@ -267,94 +267,51 @@
     </div>
   </section>
 
-  <!-- LIVE INTERACTIVE SIMULATORS -->
-  <section id="simulators" class="section">
+  <!-- LIVE APPLICATION EMBEDS SECTION -->
+  <section id="live-demos" class="section">
     <div class="container">
       <div class="section-header">
-        <span class="badge badge-emerald">Interactive Benchmarks</span>
-        <h2 class="section-title">Live Model Simulators</h2>
-        <p class="section-desc">Test model logic in real-time with interactive controls simulating PyOD Ensemble, SHAP attribution, and Fraud Risk scoring.</p>
+        <span class="badge badge-emerald"><i class="fa-solid fa-play"></i> Live Interactive Apps</span>
+        <h2 class="section-title">Try Deployed Applications Live</h2>
+        <p class="section-desc">Interact directly with live production applications embedded directly below.</p>
       </div>
 
-      <!-- Simulator 1: EWS Anomaly Simulator -->
-      <div class="glass-card simulator-card">
-        <div class="simulator-header">
-          <div>
-            <span class="badge badge-rose">Simulator 1</span>
-            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-top: 0.5rem;">EWS Attendance Anomaly & SHAP Explainer</h3>
-          </div>
-          <span class="badge badge-indigo">PyOD Ensemble + SHAP XAI</span>
-        </div>
-
-        <div class="simulator-grid">
-          <div class="control-panel">
-            <div class="control-group">
-              <label>Haversine Distance to Office: <span id="ews-distance-val" class="gradient-text">1.2 km</span></label>
-              <input type="range" id="ews-distance" min="0" max="80" step="0.5" value="1.2" class="range-slider">
-            </div>
-
-            <div class="control-group">
-              <label>Official Business Trip Note attached?</label>
-              <select id="ews-note" class="select-input">
-                <option value="no">No Note (Regular Check-in)</option>
-                <option value="yes">Yes (Official Note Attached)</option>
-              </select>
-            </div>
-
-            <div class="control-group">
-              <label>Spatio-Temporal Time Window Delta (minutes):</label>
-              <input type="number" id="ews-time" value="15" min="0" max="180" class="select-input">
-            </div>
-          </div>
-
-          <div class="output-display">
-            <span style="font-size: 0.85rem; color: var(--text-muted);">PyOD Ensemble Anomaly Score</span>
-            <div class="result-meter" id="ews-meter">
-              <div class="result-meter-inner">
-                <span class="result-score" id="ews-score">15%</span>
-              </div>
-            </div>
-            <span class="result-status" id="ews-status">NORMAL (LOW RISK)</span>
-            <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
-              <strong>SHAP Primary Reason:</strong> <span id="ews-shap-reason" class="text-cyan">Normal Pattern</span>
-            </div>
-          </div>
-        </div>
+      <!-- Live App Switcher Tabs -->
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+        <button id="tab-streamlit-btn" onclick="switchLiveTab('streamlit')" style="padding: 0.75rem 1.6rem; border-radius: 30px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-glow); background: rgba(99,102,241,0.25); color: white; display: flex; align-items: center; gap: 0.6rem; transition: all 0.3s ease;">
+          <i class="fa-solid fa-globe text-cyan"></i> 1. Streamlit 3D Geospatial App
+        </button>
+        <button id="tab-flask-btn" onclick="switchLiveTab('flask')" style="padding: 0.75rem 1.6rem; border-radius: 30px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-glow); background: var(--bg-card); color: white; display: flex; align-items: center; gap: 0.6rem; transition: all 0.3s ease;">
+          <i class="fa-solid fa-flask text-rose"></i> 2. EWS Flask Anomaly Web App
+        </button>
       </div>
 
-      <!-- Simulator 2: Credit Card Fraud Simulator -->
-      <div class="glass-card simulator-card">
-        <div class="simulator-header">
+      <!-- Streamlit iFrame Embed -->
+      <div id="embed-streamlit" class="glass-card" style="padding: 1.2rem; border-radius: 16px; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-glow);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
           <div>
-            <span class="badge badge-amber">Simulator 2</span>
-            <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-top: 0.5rem;">Credit Card Fraud Risk Evaluator</h3>
+            <span class="badge badge-cyan">Streamlit Community Cloud</span>
+            <strong style="color: white; margin-left: 0.5rem; font-size: 1.05rem;">3D Geospatial Risk Scoring Dashboard</strong>
           </div>
-          <span class="badge badge-cyan">Random Forest Imbalanced Engine</span>
+          <a href="https://visual-presence.streamlit.app/" target="_blank" class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.8rem; text-decoration: none;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Fullscreen in New Tab
+          </a>
         </div>
+        <iframe src="https://visual-presence.streamlit.app/?embed=true" width="100%" height="650px" style="border: none; border-radius: 12px; background: #0e1117;" title="Streamlit 3D Dashboard"></iframe>
+      </div>
 
-        <div class="simulator-grid">
-          <div class="control-panel">
-            <div class="control-group">
-              <label>Transaction Velocity (last 1 hr): <span id="fraud-velocity-val" class="gradient-text">1 tx/hr</span></label>
-              <input type="range" id="fraud-velocity" min="1" max="10" step="1" value="1" class="range-slider">
-            </div>
-
-            <div class="control-group">
-              <label>Amount vs Cardholder Average: <span id="fraud-ratio-val" class="gradient-text">1.0x avg</span></label>
-              <input type="range" id="fraud-ratio" min="0.5" max="5.0" step="0.2" value="1.0" class="range-slider">
-            </div>
+      <!-- Flask iFrame Embed -->
+      <div id="embed-flask" class="glass-card" style="display: none; padding: 1.2rem; border-radius: 16px; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-glow);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <span class="badge badge-rose">Vercel Cloud</span>
+            <strong style="color: white; margin-left: 0.5rem; font-size: 1.05rem;">EWS Attendance Anomaly Detection Web App</strong>
           </div>
-
-          <div class="output-display">
-            <span style="font-size: 0.85rem; color: var(--text-muted);">Random Forest Fraud Probability</span>
-            <div class="result-meter" id="fraud-meter">
-              <div class="result-meter-inner">
-                <span class="result-score" id="fraud-score">12%</span>
-              </div>
-            </div>
-            <span class="result-status" id="fraud-status">LEGITIMATE TRANSACTION</span>
-          </div>
+          <a href="https://siset-eight.vercel.app/upload" target="_blank" class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.8rem; text-decoration: none;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Fullscreen in New Tab
+          </a>
         </div>
+        <iframe src="https://siset-eight.vercel.app/upload" width="100%" height="650px" style="border: none; border-radius: 12px; background: #ffffff;" title="EWS Flask Web App"></iframe>
       </div>
 
     </div>
