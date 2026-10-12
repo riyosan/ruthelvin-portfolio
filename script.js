@@ -1,13 +1,41 @@
 /* ==========================================================================
-   RUTH ELVIN - S2 DSAI AI PORTFOLIO INTERACTIVE SCRIPT
+   RUTH ELVIN HARIANJA - DATA SCIENCE, ML & AI PORTFOLIO INTERACTIVE SCRIPT
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
   initParticleCanvas();
   initProjectFilters();
   initSimulators();
   initModals();
 });
+
+/* --- 0. LIGHT MODE & NIGHT MODE THEME TOGGLE --- */
+function initThemeToggle() {
+  const toggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  if (!toggleBtn || !themeIcon) return;
+
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-mode');
+    themeIcon.classList.remove('fa-sun');
+    themeIcon.classList.add('fa-moon');
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-mode');
+    if (isLight) {
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      localStorage.setItem('portfolio-theme', 'light');
+    } else {
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      localStorage.setItem('portfolio-theme', 'dark');
+    }
+  });
+}
 
 /* --- 1. NEURAL PARTICLE CANVAS BACKGROUND --- */
 function initParticleCanvas() {
@@ -106,128 +134,8 @@ function initProjectFilters() {
 
 /* --- 3. LIVE INTERACTIVE SIMULATORS --- */
 function initSimulators() {
-  // --- EWS Anomaly Simulator ---
   const distanceInput = document.getElementById('ews-distance');
-  const distanceVal = document.getElementById('ews-distance-val');
-  const noteInput = document.getElementById('ews-note');
-  const timeInput = document.getElementById('ews-time');
-  
-  const meterElem = document.getElementById('ews-meter');
-  const scoreElem = document.getElementById('ews-score');
-  const statusElem = document.getElementById('ews-status');
-  const shapReason = document.getElementById('ews-shap-reason');
-
-  function updateEWS() {
-    if (!distanceInput) return;
-    const dist = parseFloat(distanceInput.value);
-    if (distanceVal) distanceVal.textContent = `${dist} km`;
-
-    const hasNote = noteInput ? noteInput.value === 'yes' : false;
-    const timeDelta = timeInput ? parseFloat(timeInput.value) : 0;
-
-    let score = 0;
-    let primaryShap = "Normal Pattern";
-
-    if (dist > 50) {
-      score += 65;
-      primaryShap = "Extreme Haversine Distance (>50km / Fake GPS Signal)";
-    } else if (dist > 5) {
-      score += 40;
-      primaryShap = "High Distance to Office Centroid (>5km)";
-    } else if (dist > 0.3) {
-      score += 20;
-      primaryShap = "Outside 300m Office Perimeter";
-    }
-
-    if (timeDelta > 60) {
-      score += 25;
-      if (dist <= 5) primaryShap = "Spatio-Temporal Mismatch (ST-DBSCAN Noise)";
-    }
-
-    if (!hasNote && dist > 0.3) {
-      score += 15;
-    } else if (hasNote) {
-      score = Math.max(0, score - 20);
-    }
-
-    score = Math.min(100, score);
-    if (scoreElem) scoreElem.textContent = `${score}%`;
-
-    let color = "#10B981";
-    let statusText = "NORMAL (LOW RISK)";
-    
-    if (score >= 60) {
-      color = "#F43F5E";
-      statusText = "ANOMALY DETECTED (HIGH RISK)";
-    } else if (score >= 35) {
-      color = "#F59E0B";
-      statusText = "SUSPICIOUS (MEDIUM RISK)";
-    }
-
-    if (meterElem) {
-      meterElem.style.background = `conic-gradient(${color} ${score}%, rgba(255,255,255,0.08) ${score}%)`;
-    }
-    if (statusElem) {
-      statusElem.textContent = statusText;
-      statusElem.style.color = color;
-    }
-    if (shapReason) {
-      shapReason.textContent = primaryShap;
-    }
-  }
-
-  if (distanceInput) distanceInput.addEventListener('input', updateEWS);
-  if (noteInput) noteInput.addEventListener('change', updateEWS);
-  if (timeInput) timeInput.addEventListener('input', updateEWS);
-
-  // --- Fraud Detector Simulator ---
-  const velocityInput = document.getElementById('fraud-velocity');
-  const velocityVal = document.getElementById('fraud-velocity-val');
-  const ratioInput = document.getElementById('fraud-ratio');
-  const ratioVal = document.getElementById('fraud-ratio-val');
-  
-  const fraudMeter = document.getElementById('fraud-meter');
-  const fraudScore = document.getElementById('fraud-score');
-  const fraudStatus = document.getElementById('fraud-status');
-
-  function updateFraud() {
-    if (!velocityInput) return;
-    const vel = parseInt(velocityInput.value);
-    const ratio = parseFloat(ratioInput.value);
-
-    if (velocityVal) velocityVal.textContent = `${vel} tx/hr`;
-    if (ratioVal) ratioVal.textContent = `${ratio}x avg`;
-
-    let prob = (vel * 12) + (ratio * 18);
-    prob = Math.min(99, Math.max(1, Math.round(prob)));
-
-    if (fraudScore) fraudScore.textContent = `${prob}%`;
-
-    let color = "#10B981";
-    let statusText = "LEGITIMATE TRANSACTION";
-
-    if (prob > 65) {
-      color = "#F43F5E";
-      statusText = "HIGH FRAUD PROBABILITY";
-    } else if (prob > 35) {
-      color = "#F59E0B";
-      statusText = "MEDIUM FRAUD RISK";
-    }
-
-    if (fraudMeter) {
-      fraudMeter.style.background = `conic-gradient(${color} ${prob}%, rgba(255,255,255,0.08) ${prob}%)`;
-    }
-    if (fraudStatus) {
-      fraudStatus.textContent = statusText;
-      fraudStatus.style.color = color;
-    }
-  }
-
-  if (velocityInput) velocityInput.addEventListener('input', updateFraud);
-  if (ratioInput) ratioInput.addEventListener('input', updateFraud);
-
-  updateEWS();
-  updateFraud();
+  if (!distanceInput) return;
 }
 
 /* --- 4. PROJECT MODAL SYSTEM --- */
@@ -281,7 +189,7 @@ def calculate_risk(row):
     score = 0
     if row['dist_km'] > 50: score += 3  # Fake GPS signal
     elif row['dist_km'] > 5: score += 2  # Very Far
-    if row['is_noise_masuk'] == -1: score += 1
+    if row['is_spatial_noise'] == -1: score += 1
     if row['has_official_note']: score -= 1
     return 'HIGH' if score >= 4 else ('MED' if score >= 2 else 'LOW')`
   },
@@ -388,7 +296,6 @@ function initModals() {
   }
 }
 
-
 /* --- 5. LIVE APP TAB SWITCHER --- */
 window.switchLiveTab = function(appType) {
   const btnStreamlit = document.getElementById("tab-streamlit-btn");
@@ -401,12 +308,12 @@ window.switchLiveTab = function(appType) {
   if (appType === "streamlit") {
     embedStreamlit.style.display = "block";
     embedFlask.style.display = "none";
-    btnStreamlit.style.background = "rgba(99,102,241,0.25)";
-    btnFlask.style.background = "rgba(30,41,59,0.5)";
+    btnStreamlit.classList.add("active-tab-indigo");
+    btnFlask.classList.remove("active-tab-rose");
   } else {
     embedStreamlit.style.display = "none";
     embedFlask.style.display = "block";
-    btnFlask.style.background = "rgba(244,63,94,0.25)";
-    btnStreamlit.style.background = "rgba(30,41,59,0.5)";
+    btnFlask.classList.add("active-tab-rose");
+    btnStreamlit.classList.remove("active-tab-indigo");
   }
 };

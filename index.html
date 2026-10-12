@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ruth Elvin | Data Science & AI Portfolio</title>
-  <meta name="description" content="Portfolio Website of Ruth Elvin, Data Science, ML, AI. Featuring End-to-End Machine Learning, Anomaly Detection, Time Series Forecasting, and Explainable AI.">
+  <title>Ruth Elvin Harianja | Data Science & AI Portfolio</title>
+  <meta name="description" content="Portfolio Website of Ruth Elvin Harianja — Data Science, Machine Learning & Artificial Intelligence. Featuring End-to-End Machine Learning, Anomaly Detection, Time Series Forecasting, and Explainable AI.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -27,9 +27,14 @@
         <li><a href="#skills" class="nav-link">Capabilities</a></li>
         <li><a href="#experience" class="nav-link">Journey</a></li>
       </ul>
-      <a href="CV_Ruth_Elvin_Harianja.pdf" class="btn-cv" download="CV_Ruth_Elvin_Harianja.pdf">
-        <i class="fa-solid fa-file-pdf"></i> Download CV (.pdf)
-      </a>
+      <div class="nav-actions">
+        <a href="CV_Ruth_Elvin_Harianja.pdf" class="btn-cv" download="CV - Ruth Elvin Harianja.pdf">
+          <i class="fa-solid fa-file-pdf"></i> Download CV (.pdf)
+        </a>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Light/Night Mode" title="Toggle Light / Night Mode">
+          <i class="fa-solid fa-sun" id="theme-icon"></i>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -278,20 +283,20 @@
 
       <!-- Live App Switcher Tabs -->
       <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
-        <button id="tab-streamlit-btn" onclick="switchLiveTab('streamlit')" style="padding: 0.75rem 1.6rem; border-radius: 30px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-glow); background: rgba(99,102,241,0.25); color: white; display: flex; align-items: center; gap: 0.6rem; transition: all 0.3s ease;">
+        <button id="tab-streamlit-btn" class="live-tab-btn active-tab-indigo" onclick="switchLiveTab('streamlit')">
           <i class="fa-solid fa-globe text-cyan"></i> 1. Streamlit 3D Geospatial App
         </button>
-        <button id="tab-flask-btn" onclick="switchLiveTab('flask')" style="padding: 0.75rem 1.6rem; border-radius: 30px; font-weight: 600; cursor: pointer; border: 1px solid var(--border-glow); background: var(--bg-card); color: white; display: flex; align-items: center; gap: 0.6rem; transition: all 0.3s ease;">
+        <button id="tab-flask-btn" class="live-tab-btn" onclick="switchLiveTab('flask')">
           <i class="fa-solid fa-flask text-rose"></i> 2. EWS Flask Anomaly Web App
         </button>
       </div>
 
       <!-- Streamlit iFrame Embed -->
-      <div id="embed-streamlit" class="glass-card" style="padding: 1.2rem; border-radius: 16px; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-glow);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+      <div id="embed-streamlit" class="glass-card live-embed-card">
+        <div class="live-embed-header">
           <div>
             <span class="badge badge-cyan">Streamlit Community Cloud</span>
-            <strong style="color: white; margin-left: 0.5rem; font-size: 1.05rem;">3D Geospatial Risk Scoring Dashboard</strong>
+            <strong class="live-embed-title">3D Geospatial Risk Scoring Dashboard</strong>
           </div>
           <a href="https://visual-presence.streamlit.app/" target="_blank" class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.8rem; text-decoration: none;">
             <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Fullscreen in New Tab
@@ -301,11 +306,11 @@
       </div>
 
       <!-- Flask iFrame Embed -->
-      <div id="embed-flask" class="glass-card" style="display: none; padding: 1.2rem; border-radius: 16px; background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-glow);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+      <div id="embed-flask" class="glass-card live-embed-card" style="display: none;">
+        <div class="live-embed-header">
           <div>
             <span class="badge badge-rose">Vercel Cloud</span>
-            <strong style="color: white; margin-left: 0.5rem; font-size: 1.05rem;">EWS Attendance Anomaly Detection Web App</strong>
+            <strong class="live-embed-title">EWS Attendance Anomaly Detection Web App</strong>
           </div>
           <a href="https://siset-eight.vercel.app/upload" target="_blank" class="btn-primary" style="padding: 0.45rem 1rem; font-size: 0.8rem; text-decoration: none;">
             <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Fullscreen in New Tab
@@ -428,9 +433,21 @@
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="glass-card timeline-content">
+            <div class="timeline-date">FEB 2026 - APR 2026</div>
+            <h3 class="timeline-role">Data Scientist Intern</h3>
+            <div class="timeline-org">BKPSDM Kota Medan | Medan</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+              Built a Python preprocessing pipeline to standardize attendance records and engineer temporal/geospatial features. Applied spatial and spatiotemporal DBSCAN (ST-DBSCAN) with Haversine distance to identify attendance outliers, implemented a rule-based risk scoring system (low, medium, high), and developed an interactive Streamlit dashboard for department-level attendance review.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="glass-card timeline-content">
             <div class="timeline-date">2024 - 2026</div>
-            <h3 class="timeline-role">Magister Sains Data & Kecerdasan Buatan (S2 DSAI)</h3>
-            <div class="timeline-org">Universitas Sumatera Utara (USU)</div>
+            <h3 class="timeline-role">Master’s Degree in Data Science and Artificial Intelligence</h3>
+            <div class="timeline-org">University of North Sumatra</div>
             <p style="color: var(--text-muted); font-size: 0.9rem;">
               Focused on geospatial machine learning, anomaly detection systems, ST-DBSCAN spatio-temporal clustering, and SHAP explainable AI.
             </p>
@@ -442,9 +459,9 @@
           <div class="glass-card timeline-content">
             <div class="timeline-date">OCT 2022 - AUG 2024</div>
             <h3 class="timeline-role">Quality Assurance Engineer</h3>
-            <div class="timeline-org">Gokomodo | South Jakarta (On-site)</div>
+            <div class="timeline-org">Gokomodo | South Jakarta</div>
             <p style="color: var(--text-muted); font-size: 0.9rem;">
-              Led end-to-end quality assurance, test case execution, cross-functional Agile collaboration, and database validation for enterprise B2B platforms.
+              Worked closely with the Product team (PMs, Designers, Developers, and QA engineers) from feature inception, prepared and executed test case documents, analyzed results, reported defects, and created automated testing scripts using Selenium.
             </p>
           </div>
         </div>
@@ -454,9 +471,9 @@
           <div class="glass-card timeline-content">
             <div class="timeline-date">OCT 2021 - SEP 2022</div>
             <h3 class="timeline-role">Software Quality Assurance</h3>
-            <div class="timeline-org">Anteraja | South Jakarta (Hybrid)</div>
+            <div class="timeline-org">Anteraja | South Jakarta</div>
             <p style="color: var(--text-muted); font-size: 0.9rem;">
-              Conducted functional, integration, and regression testing for high-volume logistics and tracking systems using JIRA and TestRail.
+              Executed test cases and reported defects, worked vertically on each feature to test mobile UI user experience and user flows, and conducted regression testing in SIT environments and smoke testing on Beta applications prior to production release.
             </p>
           </div>
         </div>
@@ -465,10 +482,10 @@
           <div class="timeline-dot"></div>
           <div class="glass-card timeline-content">
             <div class="timeline-date">2017 - 2021</div>
-            <h3 class="timeline-role">D-IV Teknologi Informasi / Rekayasa Perangkat Lunak</h3>
-            <div class="timeline-org">Institut Teknologi Del</div>
+            <h3 class="timeline-role">Bachelor of Applied Science in Software Engineering Technology</h3>
+            <div class="timeline-org">Del Institute of Technology</div>
             <p style="color: var(--text-muted); font-size: 0.9rem;">
-              Bachelor's degree in Software Engineering & IT fundamentals.
+              Undergraduate degree in Software Engineering Technology & IT fundamentals.
             </p>
           </div>
         </div>
@@ -500,17 +517,17 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-logo">
-        RUTH ELVIN
+        RUTH ELVIN HARIANJA
       </div>
       <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
-        Data Science, ML, AI | Data Scientist & AI Specialist
+        Data Science, Machine Learning & Artificial Intelligence
       </p>
       <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
         <a href="https://linkedin.com/in/ruthelvinn" target="_blank" style="color: var(--text-muted); font-size: 1.4rem;"><i class="fa-brands fa-linkedin"></i></a>
         <a href="https://github.com/ruth-elvin" target="_blank" style="color: var(--text-muted); font-size: 1.4rem;"><i class="fa-brands fa-github"></i></a>
         <a href="mailto:ruthelvinn@gmail.com" style="color: var(--text-muted); font-size: 1.4rem;"><i class="fa-solid fa-envelope"></i></a>
       </div>
-      <p class="footer-copy">© 2026 Ruth Elvin. Data Science & AI Portfolio Showcase.</p>
+      <p class="footer-copy">© 2026 Ruth Elvin Harianja. Data Science & AI Portfolio Showcase.</p>
     </div>
   </footer>
 
