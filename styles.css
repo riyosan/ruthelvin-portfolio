@@ -1271,3 +1271,80 @@ body.light-mode .footer {
     font-size: 0.95rem;
   }
 }
+
+
+/* --- HERO CORE FOCUS PILLARS (OPTION C) --- */
+.pillars-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.pillar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  padding: 0.95rem 1.15rem;
+  transition: var(--transition);
+}
+
+.pillar-card:hover {
+  border-color: var(--border-glow);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -6px var(--primary-glow);
+}
+
+.pillar-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.35rem;
+}
+
+.pillar-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.icon-rose {
+  background: rgba(244, 63, 94, 0.15);
+  color: var(--rose);
+}
+
+.icon-cyan {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--cyan);
+}
+
+.icon-indigo {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--primary);
+}
+
+.icon-emerald {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald);
+}
+
+.pillar-title {
+  font-family: var(--font-heading);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+body.light-mode .pillar-card {
+  background: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+@media (max-width: 600px) {
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+}
